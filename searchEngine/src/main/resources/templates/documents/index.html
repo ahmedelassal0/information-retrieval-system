@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+<ul class="space-y-2">
+    <li th:each="document : ${documents}" class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-50">
+        <a th:href="@{/documents/{url}(url=${document.getDocumentUri()})}"
+           th:text="${document.getTitle()}"
+           class="text-blue-500 font-semibold hover:underline"></a>
+    </li>
+</ul>
+</body>
+</html>

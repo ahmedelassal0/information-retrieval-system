@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function toggleExclude() {
+            const excludeDiv = document.getElementById('exclude-div');
+            excludeDiv.classList.toggle('hidden');
+        }
+    </script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<form method="GET" th:action="@{/documents}" class="bg-white p-6 rounded-lg shadow-md space-y-4">
+    <div>
+        <label for="query" class="block text-gray-700 font-semibold"></label>
+        <input type="text" name="query" id="query"
+               class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+    <div class="text-center">
+        <input type="submit" value="Search"
+               class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+    </div>
+    <div>
+        <label for="toggle-exclude" class="block text-gray-700 font-semibold">Exclude words?</label>
+        <input type="checkbox" id="toggle-exclude" class="mt-1 hidden" onclick="toggleExclude()">
+    </div>
+    <div id="exclude-div" class="hidden">
+        <label>
+            <input type="text" name="excluded" id="excluded" placeholder="Use ',' to split the words"
+                   class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </label>
+    </div>
+</form>
+</body>
+</html>
