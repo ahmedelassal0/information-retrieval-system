@@ -6,11 +6,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
+<form method="GET" th:action="@{/documents}" class="bg-white p-6 rounded-lg shadow-md space-y-4 mb-4">
+    <div class="flex gap-4">
+        <label for="query" class="block text-gray-700 font-semibold"></label>
+        <input type="text" name="query" id="query"
+               placeholder="search"
+               class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <input type="submit" value="Search"
+               class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+    </div>
+</form>
 <ul class="space-y-2">
-    <li th:each="document : ${documents}" class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-50">
+    <li th:each="document, iterStat : ${documents}" class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-50">
         <a th:href="@{/documents/{url}(url=${document.getDocumentUri()})}"
            th:text="${document.getTitle()}"
            class="text-blue-500 font-semibold hover:underline"></a>
+        <div th:text="${#strings.substring(documentsContent[iterStat.index], 0, 50)} + '...'"
+             class="mt-2 text-gray-700"></div>
     </li>
 </ul>
 </body>

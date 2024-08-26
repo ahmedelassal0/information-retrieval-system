@@ -42,7 +42,7 @@ public class DocumentController {
             @RequestParam(name = "query") String query,
             @RequestParam(name = "excluded", required = false) String excluded,
             Model model
-    ) {
+    ) throws IOException {
         String[] excludedArr =
                 excluded == null ? null
                         :
@@ -52,8 +52,10 @@ public class DocumentController {
                                 .toArray(String[]::new);
 
         List<Posting> documents = searchService.searchDocuments(query, excludedArr);
-        model.addAttribute("documents", documents);
+        String[] documentsContent = fileReader.readDocuments(documents.stream().map(Posting::getDocumentUri).toArray(String[]::new));
 
+        model.addAttribute("documents", documents);
+        model.addAttribute("documentsContent", documentsContent);
         return "documents/index";
     }
 

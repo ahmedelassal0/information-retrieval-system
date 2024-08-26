@@ -20,7 +20,6 @@ public class PostingListImpl implements PostingList {
         }
         data.add(posting);
         data.sort(Comparator.comparingLong(Posting::getId));
-        System.out.println(data);
     }
 
     @Override
