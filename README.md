@@ -13,7 +13,7 @@ You need nothing more than installing the applicatipon and use these end points 
 
 ## future work
 1. positional indexing
-2. connection noSQL database
+2. connecting to noSQL database
 3. weighted edit distance algorithm
 4. skip pointers
 ## Authors
